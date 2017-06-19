@@ -16,7 +16,7 @@ public static void Run(BrokeredMessage myQueueItem, TraceWriter log)
     log.Info($"C# ServiceBus queue trigger function received message: {myQueueItem.Label}");
 
     log.Info("Logging in to Azure Storage, setting upload and thumbnail containers");
-    var acct = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureStorageConnection"]);
+    var acct = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureWebJobsStorage"]);
     var client = acct.CreateCloudBlobClient();
     var container = client.GetContainerReference("upload");
     var thumbContainer = client.GetContainerReference("uploadthumb");

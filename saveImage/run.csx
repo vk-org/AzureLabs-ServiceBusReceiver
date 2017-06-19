@@ -11,7 +11,7 @@ public static void Run(BrokeredMessage mySbMsg, TraceWriter log)
 {
     log.Info($"C# ServiceBus topic trigger function processed message: {mySbMsg.Label}");
 
-    var acct = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureStorageConnection"]);
+    var acct = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureWebJobsStorage"]);
     var client = acct.CreateCloudBlobClient();
     var sourceContainer = client.GetContainerReference("upload");
     var sourceThumbContainer = client.GetContainerReference("uploadthumb");
